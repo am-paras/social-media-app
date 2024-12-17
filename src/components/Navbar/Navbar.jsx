@@ -12,7 +12,12 @@ import './Navbar.scss';
 
 function Navbar() {
     const [darkMode, setDarkMode] = useState(false);
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser , logout } = useContext(AuthContext);
+    const [ showDropdown, setShowDropdown ] = useState(false);
+
+    const handleOnClickUser = () => {
+        setShowDropdown(!showDropdown);
+    }
   return (
     <div className="navbar">
       <div className="left">
@@ -29,10 +34,17 @@ function Navbar() {
         <PersonOutlinedIcon />
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
-        <div className="user">
+        <div className="user" onClick = {() => handleOnClickUser()}>
           <img src={currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
         </div>
+        { showDropdown && <div className="dropDown">
+          <ul>
+            <li onClick={() => window.location.href = `/${currentUser.id}`}>Profile</li>
+            <li onClick={() => logout()}>Log Out</li>
+          </ul>
+        </div>
+        }
       </div>
     </div>
   );

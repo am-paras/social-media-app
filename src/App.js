@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { AuthContext } from "./Context/AuthContext";
 
 function App() {
-  const currentUser = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const Layout = () => {
     return (
       <div className="">

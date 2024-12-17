@@ -1,16 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import "./Login.scss";
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { currentUser, login } = useContext(AuthContext);
 
-  const handleLoginClick = () => {
-    // Login function have hard-coded user data, so login will be successful always.
-    login();
-    // window.location.href = '/';
+  if(currentUser) { 
+    return <Navigate to= "/"/>
   }
+
   return (
     <div className="login">
       <div className="card">
@@ -31,7 +30,7 @@ const Login = () => {
           <form>
             <input type="text" placeholder="Username" />
             <input type="password" placeholder="Password" />
-            <button type="submit" onClick={handleLoginClick}>Login</button>
+            <button type="submit" onClick={() => login()}>Login</button>
           </form>
         </div>
       </div>

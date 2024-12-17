@@ -3,18 +3,20 @@ import {
   Routes,
   Route,
   Navigate,
+  Outlet
 } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Navbar from "./components/Navbar/Navbar";
 import LeftBar from "./components/LeftBar/LeftBar";
 import RightBar from "./components/RightBar/RightBar";
-import Outlet from "./components/Outlet/Outlet";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
+import { useContext } from "react";
+import { AuthContext } from "./Context/AuthContext";
 
 function App() {
-  const currentUser = true;
+  const currentUser = useContext(AuthContext);
   const Layout = () => {
     return (
       <div className="">

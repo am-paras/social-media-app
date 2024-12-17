@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom';
 import "./Login.scss";
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthContext';
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+
+  const handleLoginClick = () => {
+    // Login function have hard-coded user data, so login will be successful always.
+    login();
+    // window.location.href = '/';
+  }
   return (
     <div className="login">
       <div className="card">
@@ -22,7 +31,7 @@ const Login = () => {
           <form>
             <input type="text" placeholder="Username" />
             <input type="password" placeholder="Password" />
-            <button type="submit">Login</button>
+            <button type="submit" onClick={handleLoginClick}>Login</button>
           </form>
         </div>
       </div>
